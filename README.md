@@ -30,3 +30,10 @@ login: admin / admin123
 
 Protected routes need `Authorization: Bearer <token>` 
 need be Sign IN if not you get 401 not authorised 
+
+
+## Scaling notes
+
+5 RPS - this setup is fine, one backend + mysql
+50 RPS - indexes help (already on country/vehicle_type), use connection pooling, maybe cache the chart endpoints for a bit
+500 RPS - run more backend instances behind a load balancer, mysql read replica for the chart queries, redis for cached aggregates, if need serch for data need add ElasticSerch for fast serching searching.

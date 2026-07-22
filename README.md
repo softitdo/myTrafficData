@@ -55,4 +55,4 @@ GitHub Actions workflow in `.github/workflows/ci-cd.yml`:
 
 - on push/PR: install deps, build the frontend, build docker images
 <img src="docs/screenshotCICD.png" alt="CI/CD" width="600" />
-
+<img src="docs/screenshotCICD2.png" alt="CI/CD" width="600" />

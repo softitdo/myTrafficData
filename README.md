@@ -54,5 +54,32 @@ need be Sign IN if not you get 401 not authorised
 GitHub Actions workflow in `.github/workflows/ci-cd.yml`:
 
 - on push/PR: install deps, build the frontend, build docker images
-<img src="docs/screenshotCICD.png" alt="CI/CD" width="600" />
-<img src="docs/screenshotCICD2.png" alt="CI/CD" width="600" />
+<img src="docs/screenshotCICD.png" alt="chart" width="500" />
+<img src="docs/screenshotCICD2.png" alt="chart" width="500" />
+<img src="docs/CiCDUnitTest.png" alt="chart" width="500" />
+
+
+## Unit Tests
+
+- Frontend:
+
+```
+cd frontend && npm test
+```
+
+TODO:: need add more tests
+
+<img src="docs/clientUnitTest.png" alt="chart" width="400" />
+
+- backend:
+
+```
+cd backend
+node --test auth.test.js
+node --test api.test.js
+```
+
+TODO:: need add more tests and crate index file to run from one plase.
+
+<img src="docs/serverUnitTest1.png" alt="chart" width="400" />
+<img src="docs/serverUnitTest2.png" alt="chart" width="400" />

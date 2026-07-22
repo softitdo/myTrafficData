@@ -8,17 +8,25 @@ React + node.js (Express) + MySQL. Charts for country traffic and vehicle types.
 docker compose up --build
 ```
 
+Then open http://127.0.0.1:3000/
 
+login: admin / admin123
 
-### **Client only (local Vite), Docker for API/DB**
+## Folders
 
-If you want hot reload on the React app:
+- `backend` - api
+- `frontend` - react app
+- `db/init.sql` - schema + some sample rows
 
+## API
 
-```
-cd frontend
+- POST /api/login - Sine IN 
+- GET /api/traffic - all
+- GET /api/traffic/by-country - By country, for the country graff
+- GET /api/traffic/by-vehicle  - By vehicle, for the vehicle graff
+- POST /api/traffic - crate new insert 
+- PUT /api/traffic/:id - update by ID
+- DELETE /api/traffic/:id - Delete by ID 
 
-npm install
-
-npm run dev
-```
+Protected routes need `Authorization: Bearer <token>` 
+need be Sine IN if not you get 401 not aurerise 

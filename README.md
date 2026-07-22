@@ -37,3 +37,11 @@ need be Sign IN if not you get 401 not authorised
 50 RPS - indexes help (already on country/vehicle_type), use connection pooling, maybe cache the chart endpoints for a bit
 500 RPS - run more backend instances behind a load balancer, mysql read replica for the chart queries, redis for cached aggregates, if need serch for data need add ElasticSerch for fast serching searching.  
   
+## CI/CD
+
+GitHub Actions workflow in `.github/workflows/ci-cd.yml`:
+
+- on push/PR: install deps, build the frontend, build docker images
+- on push to `main`: also push `traffic-backend` and `traffic-frontend` images to GHCR (`ghcr.io`)
+
+Images show up under the repo Packages tab after the first successful run on main.

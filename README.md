@@ -10,7 +10,7 @@ React + node.js (Express) + MySQL. Charts for country traffic and vehicle types.
 <img src="docs/chartScreenshot3.png" alt="chart" width="400" />
 <img src="docs/chartScreenshot4.png" alt="chart" width="400" />
 
-## obile
+## Mobile
 <img src="docs/mobileScreenshot6.png" alt="chart" width="400" />
 
 ## How to run

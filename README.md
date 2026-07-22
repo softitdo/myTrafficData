@@ -20,7 +20,7 @@ login: admin / admin123
 
 ## API
 
-- POST /api/login - Sine IN 
+- POST /api/login - Sign IN
 - GET /api/traffic - all
 - GET /api/traffic/by-country - By country, for the country graff
 - GET /api/traffic/by-vehicle  - By vehicle, for the vehicle graff
@@ -29,4 +29,4 @@ login: admin / admin123
 - DELETE /api/traffic/:id - Delete by ID 
 
 Protected routes need `Authorization: Bearer <token>` 
-need be Sine IN if not you get 401 not aurerise 
+need be Sign IN if not you get 401 not authorised 

@@ -5,13 +5,17 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
 
@@ -34,14 +38,11 @@ jobs:
     needs: ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Login to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -49,11 +50,17 @@ jobs:
 
       - name: Push images
         run: |
-          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          BACKEND=ghcr.io/$OWNER/traffic-backend:latest
-          FRONTEND=ghcr.io/$OWNER/traffic-frontend:latest
+          IMAGE_BASE=ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          BACKEND=$IMAGE_BASE/backend:latest
+          FRONTEND=$IMAGE_BASE/frontend:latest
+          SOURCE=https://github.com/${{ github.repository }}
 
-          docker build -t $BACKEND ./backend
-          docker build -t $FRONTEND ./frontend
-          docker push $BACKEND
-          docker push $FRONTEND
+          docker build \
+            --label "org.opencontainers.image.source=$SOURCE" \
+            -t "$BACKEND" ./backend
+          docker build \
+            --label "org.opencontainers.image.source=$SOURCE" \
+            -t "$FRONTEND" ./frontend
+
+          docker push "$BACKEND"
+          docker push "$FRONTEND"
